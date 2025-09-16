@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <title>AI 도구 탐색 앱</title>
+    <style>
+        body { font-family: Arial; }
+        .category { margin: 20px; border: 1px solid #ccc; padding: 10px; }
+        .tool { margin: 10px 0; }
+        .link { color: blue; text-decoration: underline; cursor: pointer; }
+    </style>
+</head>
+<body>
+    <h1>AI 역할 탐색 앱</h1>
+    <input type="text" id="search" placeholder="AI 역할 검색 (e.g., 이미지 생성)" onkeyup="filterTools()">
+    
+    <div id="categories">
+        <!-- 동적 로드 -->
+    </div>
+
+    <script>
+        const data = {
+            categories: [
+                {
+                    name: "텍스트 생성 및 챗봇",
+                    tools: [
+                        { name: "ChatGPT", description: "텍스트 기반 대화, 콘텐츠 생성.", website: "https://chat.openai.com/" },
+                        { name: "Google Gemini", description: "텍스트/이미지 처리.", website: "https://gemini.google.com/" }
+                    ]
+                },
+                // 다른 카테고리 추가 (위 목록 기반)
+            ]
+        };
+
+        function loadCategories() {
+            const container = document.getElementById('categories');
+            data.categories.forEach(cat => {
+                const div = document.createElement('div');
+                div.className = 'category';
+                div.innerHTML = `<h2>${cat.name}</h2>`;
+                cat.tools.forEach(tool => {
+                    div.innerHTML += `<div class="tool">${tool.name}: ${tool.description} <a class="link" href="${tool.website}" target="_blank">사이트 확인</a></div>`;
+                });
+                container.appendChild(div);
+            });
+        }
+
+        function filterTools() {
+            // 검색 로직 구현 (간단 예시)
+            const query = document.getElementById('search').value.toLowerCase();
+            // ... (필터링 코드 추가)
+        }
+
+        loadCategories();
+    </script>
+</body>
+</html>
